@@ -1,4 +1,4 @@
-\beamer@sectionintoc {1}{引言}{3}{0}{1}
-\beamer@sectionintoc {2}{方法}{5}{0}{2}
-\beamer@sectionintoc {3}{实验}{6}{0}{3}
-\beamer@sectionintoc {4}{总结}{8}{0}{4}
+\beamer@sectionintoc {1}{整除}{3}{0}{1}
+\beamer@sectionintoc {2}{方法}{7}{0}{2}
+\beamer@sectionintoc {3}{实验}{8}{0}{3}
+\beamer@sectionintoc {4}{总结}{10}{0}{4}

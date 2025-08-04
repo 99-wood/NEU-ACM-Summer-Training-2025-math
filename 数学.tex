@@ -1,8 +1,9 @@
 \documentclass[aspectratio=169]{beamer}  % 16:9 宽屏
+\usefonttheme[onlymath]{serif} % 保留数学公式的手写体风格
 \usepackage[UTF8]{ctex}                  % 中文支持
 \usepackage{fontspec}                    % 字体设置
 \usepackage{graphicx}                    % 插图支持
-\usepackage{amsmath, amssymb}            % 数学公式支持
+\usepackage{amsmath,amssymb,amsfonts,amsthm}            % 数学公式支持
 \usepackage{tikz}                        % 绘图支持
 \usepackage{hyperref}                    % 超链接支持
 
@@ -40,13 +41,31 @@
 
 
 % 第一部分
-\section{引言}
-\begin{frame}{研究背景}
+\section{整除}
+\begin{frame}{整除}
   \begin{itemize}
-    \item 介绍你所研究的问题
-    \item 背景和动机
-    \item 已有工作的不足
+    \item 对于 $a \in \mathbb{Z}, a \neq 0$, 如果存在某个整数 $k$, 使得 $a = k \cdot d$, 则称 $d \mid a$ ($d$ 整除 $a$).
+    \item $\mid$ 是整除符号.
+    \item $d$ 是 $a$ 的约数, $a$ 是 $d$ 的倍数.
   \end{itemize}
+\end{frame}
+
+\begin{frame}{性质}
+  \begin{itemize}
+    \item 自反性: 对于任意整数 $n \neq 0$, 有 $n \mid n$.
+    \item 反对称性: 若有 $a \mid b$ 且 $|a| \neq |b|$，则 $b \nmid a$.
+    \item 传递性: 若有 $a \mid b, b \mid c$，则 $a \mid c$.
+    \item $\forall a \in \mathbb{Z} \land a \neq 0, a \mid 0$.
+    \item $\forall a \in \mathbb{Z}, 1 \mid a$.
+    \item $a \mid b, a \mid c \Leftrightarrow
+          \forall x, y \in \mathbb{Z}, a \mid (bx + cy)$.
+    \item $m \neq 0, a \mid b \Leftrightarrow
+          ma \mid mb$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  
 \end{frame}
 
 \begin{frame}{研究意义}

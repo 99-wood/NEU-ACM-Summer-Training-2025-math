@@ -1,4 +1,7 @@
-\beamer@sectionintoc {1}{整除}{3}{0}{1}
-\beamer@sectionintoc {2}{方法}{7}{0}{2}
-\beamer@sectionintoc {3}{实验}{8}{0}{3}
-\beamer@sectionintoc {4}{总结}{10}{0}{4}
+\beamer@sectionintoc {1}{数学思想}{7}{0}{1}
+\beamer@sectionintoc {2}{整除}{20}{0}{2}
+\beamer@sectionintoc {3}{质数}{35}{0}{3}
+\beamer@sectionintoc {4}{公因数与公倍数}{64}{0}{4}
+\beamer@sectionintoc {5}{模意义下运算及扩展欧几里得算法}{82}{0}{5}
+\beamer@sectionintoc {6}{中国剩余定理}{119}{0}{6}
+\beamer@sectionintoc {7}{组合数学}{125}{0}{7}

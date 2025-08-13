@@ -1,0 +1,13 @@
+\frametitle{球盒问题}
+\begin{example}
+        $n$个相同/不同的小球,放入$k$个相同/不同的盒子,每个盒子可以/不可以为空,求方案数.
+    \end{example}\pau
+    \begin{center}
+   ^^I^^I\begin{tabular}{cc|cc}\hline
+   ^^I^^I^^I$n$个球&$k$个盒子&盒子可以为空&盒子不可以为空\\\hline
+   ^^I^^I^^I有标号&有标号&$k^n$&$k!S_2\left(n,k\right)$\\
+   ^^I^^I^^I有标号&无标号&$\sum\limits_{i=1}^kS_2\left(n,i\right)$&$S_2\left(n,k\right)$\\
+   ^^I^^I^^I无标号&有标号&$\dbinom{n+k-1}{k-1}$&$\dbinom{n-1}{k-1}$\\
+   ^^I^^I^^I无标号&无标号&$p\left(n+k,k\right)$&$p\left(n,k\right)$\\\hline^^I^^I^^I
+   ^^I^^I\end{tabular}
+   ^^I\end{center}

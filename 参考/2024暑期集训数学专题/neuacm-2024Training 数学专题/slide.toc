@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{整除}{2}{0}{1}
+\beamer@sectionintoc {2}{质数}{3}{0}{2}
+\beamer@sectionintoc {3}{唯一分解定理}{4}{0}{3}
+\beamer@sectionintoc {4}{质数筛法}{6}{0}{4}
+\beamer@sectionintoc {5}{欧几里得算法}{11}{0}{5}
+\beamer@sectionintoc {6}{同余}{19}{0}{6}
+\beamer@sectionintoc {7}{快速幂}{20}{0}{7}
+\beamer@sectionintoc {8}{逆元}{21}{0}{8}
+\beamer@sectionintoc {9}{CRT}{29}{0}{9}
+\beamer@sectionintoc {10}{组合数学}{32}{0}{10}

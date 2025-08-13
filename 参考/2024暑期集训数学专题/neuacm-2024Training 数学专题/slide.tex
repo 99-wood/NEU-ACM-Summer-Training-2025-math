@@ -1,0 +1,688 @@
+\documentclass{beamer}
+\usepackage{ctex, hyperref}
+\usepackage[T1]{fontenc}
+% \usetheme{Copenhagen}
+\usetheme{Ilmenau} %主题
+
+%\mode<presentation>{
+%	%Beamer的基本模板
+%	\usetheme{Ilmenau}
+%	%色彩主题
+%	%Default and Special-Purpose Color Themes: default, structure, sidebartab
+%	%Complete Color Themes: albatross, beetle, crane, dove, fly, monarca, seagull, wolverine, beaver, spruce
+%	%Inner Color Themes: lily, orchid, rose
+%	%Outer Color Themes: whale, seahorse, dolphin
+%	\usecolortheme{spruce}
+%	%外部主题
+%	%default, infolines, miniframes, smoothbars, sidebar, split, shadow, tree, smoothtree
+%	\useoutertheme[footline=authorinstitutetitle]{miniframes}
+%	%内部主题
+%	%default, circles, rectanges, rounded, inmargin
+%	\useinnertheme{rounded}
+%	\setbeamercovered{transparent}
+%}
+
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{latexsym,bm}		
+\usepackage{fontspec}			
+\usepackage{amssymb}
+\usepackage{minted}
+
+\author{$\mathbf{Pujx}$}
+\title{数学专题}
+\subtitle{neuacm-2024Training}
+\institute{东北大学\ 计算机科学与工程学院}
+\date{2024年8月5日}
+
+%\setbeamerfont{normal text}{family=\chalkd,series=\mdseries}
+%\setbeamerfont{alerted text}{family=\chalkd,series=\bfseries}
+\setbeamerfont{frametitle}{family=\heiti,series=\mdseries}
+\setbeamerfont{title}{family=\heiti,series=\mdseries}
+\setbeamerfont{headline}{family=\heiti,series=\mdseries}
+\setbeamerfont{footline}{parent=headline}
+\setbeamerfont{structure}{family=\heiti,series=\mdseries}
+
+%\setbeamertemplate{footline}[frame number]
+
+\newcommand{\pau}{}
+
+\begin{document}
+
+\songti\normalsize
+\begin{frame}
+    \titlepage
+    \begin{figure}[htpb]
+        \begin{center}
+            \includegraphics[width=0.15\linewidth]{pic/NEU.png}
+            \hspace{1em}
+            \includegraphics[width=0.15\linewidth]{pic/NEUCSE.jpg}
+        \end{center}
+    \end{figure}
+\end{frame}
+
+\section{整除}
+\begin{frame}[fragile]
+    \frametitle{整除}
+    \begin{itemize}
+        \item 如果存在某个整数$k$,使得$a=k\cdot d$,则称$d\mid a$ ($d$整除$a$). \pau
+        \item $\mid$是整除符号. \pau
+        \item $d$是$a$的约数, $a$是$d$的倍数.
+    \end{itemize} \pau
+    \begin{block}{整除的性质}
+        \begin{itemize} \pau
+            \item $a\mid b\Leftrightarrow -a\mid b,a\mid-b,-a\mid-b,|a|\mid|b|$. \pau
+            \item $a\mid b,b\mid c\Rightarrow a\mid c$. \pau
+            \item $a\mid b,a\mid c\Leftrightarrow\forall x,y\in\mathbb{Z}, a\mid(bx+cy)$. \pau
+            \item $m\neq0,a\mid b\Leftrightarrow ma\mid mb$. \pau
+            \item $a\mid b,b\mid a\Leftrightarrow b=\pm a$.
+        \end{itemize}
+
+    \end{block}
+\end{frame}
+
+\section{质数}
+\begin{frame}[fragile]
+    \frametitle{质数(素数)}
+    \begin{itemize}
+        \item 大于$1$的自然数中,除了$1$和本身以外,不再有其他因数的数. \pau
+        \item 合数:大于$1$的自然数中,除了能被$1$和本身整除外，还能被其他数整除的数. \pau
+        \item $1$既不是质数,也不是合数.
+    \end{itemize}
+\end{frame}
+
+\section{唯一分解定理}
+\begin{frame}[fragile]
+    \frametitle{唯一分解定理(算数基本定理)}
+    \begin{block}{唯一分解定理}
+        对于$\forall a\in\mathbb{Z},a>1$,能够唯一地写成$a=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$,其中$p_i$是质数, $\alpha_i>0$, $i=1,\cdots,k$,且$p_i<p_j\left(i<j\right)$.
+    \end{block} \pau
+    \begin{itemize}
+        \item 若$a$为合数,则$\exists p\mid a,p\leqslant\sqrt{a}$. \pau
+        \item 判断$n$是否为质数:枚举$1\sim\sqrt{n}$判断是否为因数,复杂度$\mathcal{O}(\sqrt{n})$. \pau
+        \item 因数个数公式: $d(n)=\prod\limits_{i=1}^k(\alpha_i+1)$. \pau
+        \item 因数和公式: $\sigma(n)=\prod\limits_{i=1}^k\sum\limits_{j=0}^{\alpha_i}p_i^j$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{唯一分解定理(算数基本定理)}
+    \begin{block}{唯一分解定理}
+        对于$\forall a\in\mathbb{Z},a>1$,能够唯一地写成$a=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$,其中$p_i$是质数, $\alpha_i>0$, $i=1,\cdots,k$,且$p_i<p_j\left(i<j\right)$.
+    \end{block}
+    \begin{exampleblock}{Question.1}
+        如何证明质数的个数是无穷的?
+    \end{exampleblock} \pau
+    \begin{exampleblock}{Question.2}
+        如何估算小于等于$n$的质数个数$\pi(n)$? (自行上网查阅) \\\pau
+        $\pi(n)$的下界为$\log_2(\log_2 n)$, $\pi(n)$的上界为$\dfrac{n}{\ln n}$.
+    \end{exampleblock}
+\end{frame}
+
+\section{质数筛法}
+\begin{frame}[fragile]
+    \frametitle{质数筛法}
+    \begin{block}{问题}
+        求$1$到$n$内的所有质数. $1\leqslant n\leqslant 10^6$.
+    \end{block} \pau
+    \begin{itemize}
+        \item 考虑朴素算法,即逐个判断每个数是否为质数. \pau
+        \item 时间复杂度$\sum\limits_{i=1}^n\sqrt{i}=\mathcal{O}(n\sqrt{n})$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{质数筛法}
+    $$\begin{matrix}
+        1&2&3&4&5&6&7&8&9&10\\
+        11&12&13&14&15&16&17&18&19&20\\
+        21&22&23&24&25&26&27&28&29&30\\
+        31&32&33&34&35&36&37&38&39&40\\
+        41&42&43&44&45&46&47&48&49&50\\
+        51&52&53&54&55&56&57&58&59&60\\
+        61&62&63&64&65&66&67&68&69&70\\
+        71&72&73&74&75&76&77&78&79&80\\
+        81&82&83&84&85&86&87&88&89&90\\
+        91&92&93&94&95&96&97&98&99&100
+    \end{matrix}$$
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{质数筛法}
+    \begin{block}{埃氏筛(Sieve of Eratosthenes)}
+        用质数把质数的倍数筛掉.
+    \end{block} \pau
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    void sieve(int n) {
+        for (int i = 2; i <= n; i++)
+            if (!not_prime[i]) {
+                prime[++tot] = i;
+                for (int j = 2 * i; j <= n; j += i)
+                    not_prime[j] = 1;
+            }
+    }
+    \end{minted}
+    \pau\begin{itemize}
+        \item 时间复杂度: $\mathcal{O}(n\log(\log n))$ (Mertens' 2nd theorem). \pau
+        \item 改进思路: 有些数会被多个因子筛除,例如$6$,会被$2,3$各筛一次.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{质数筛法}
+    \begin{block}{欧拉筛(Euler Sieve)}
+        每个合数只需要被其最小的质因子筛掉.
+    \end{block} \pau
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    void sieve(int n) {
+        for (int i = 2; i <= n; i++) {
+            if (!not_prime[i]) prime[++tot] = i;
+            for (int j = 1; j <= tot && i * prime[j] <= n; j++) {
+                not_prime[i * prime[j]] = 1;
+                if (i % prime[j] == 0) break;
+            }
+        }
+    }
+    \end{minted}
+    \pau\begin{itemize}
+        \item 时间复杂度: $\mathcal{O}(n)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{质数筛法}
+    \begin{exampleblock}{\href{http://poj.org/problem?id=2689}{Prime Distance (POJ 2689)}}
+        求$[L,R]$区间中,距离最近的一对和最远的一对质数.多组询问.\\
+        $1\leqslant L<R\leqslant2147483647,\sum(R-L+1)\leqslant10^6$.
+    \end{exampleblock}
+\end{frame}
+
+\section{欧几里得算法}
+\begin{frame}[fragile]
+    \frametitle{GCD和LCM}
+    \begin{itemize}
+        \item $d\in\mathbb{Z},a_1,a_2\in\mathbb{Z}$.\pau
+        \item 如果$d\mid a_1,d\mid a_2$,则称$d$为$a_1,a_2$的公因数. \pau
+        \item 如果$a_1\mid d,a_2\mid d$,则称$d$为$a_1,a_2$的公倍数. \pau
+        \item $a_1,a_2$的所有公因数中最大的称为最大公因数(Greatest Common Divisor),记为$(a_1,a_2)$. \pau
+        \item $a_1,a_2$的所有公倍数中最小的称为最小公倍数(Leatest Common Multiple),记为$[a_1,a_2]$. \pau
+        \item $[a_1,a_2]=\dfrac{a_1a_2}{(a_1,a_2)}$. \pau
+        \item $(a_1,a_2)=1\Leftrightarrow a_1,a_2$互质.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{欧几里得算法}
+    \begin{block}{问题}
+        给定整数$a,b$,计算$(a,b)$. $1\leqslant a,b\leqslant10^{18}$.
+    \end{block}\pau
+    \begin{itemize}
+        \item 朴素算法:从大到小枚举每个数,判断是否为GCD. $\mathcal{O}(\min\{a,b\})$. 
+    \end{itemize}\pau
+    \begin{block}{辗转相减法}
+        $(a,b)=(b,a-b)$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{欧几里得算法}
+    \begin{block}{问题}
+        给定整数$a,b$,计算$(a,b)$. $1\leqslant a,b\leqslant10^{18}$.
+    \end{block}
+    \begin{block}{欧几里得算法 (辗转相除法)}
+        $(a,b)=(b,a\,\%\,b)$.
+    \end{block}\pau
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    int gcd(int a, int b) {
+        return !b ? a : gcd(b, a % b);
+    }
+    \end{minted}
+    \pau\begin{itemize}
+        \item 时间复杂度: $\mathcal{O}(\log(\min\{a,b\}))$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{扩展欧几里得算法 (exgcd)}
+    \begin{block}{裴蜀定理}
+        对任意整数$a,b$ ($a,b$不全为$0$),一定存在整数$x,y$,使不定方程$ax+by=(a,b)$成立. (证明略)
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{扩展欧几里得算法 (exgcd)}
+    \begin{block}{问题}
+        给定整数$a,b$ ($a,b$不全为$0$),求不定方程$ax+by=(a,b)$的整数解.
+    \end{block}\pau
+    \begin{itemize}
+        \item $ax+by=(a,b)$, \pau
+        \item $bx'+(a\,\%\,b)y'=(b,a\,\%\,b)$, \pau
+        \item 由$(a,b)=(b,a\,\%\,b)$, $a\,\%\,b=a-\left\lfloor\dfrac{a}{b}\right\rfloor b$, \pau
+        \item 可得$bx'+\left(a-\left\lfloor\dfrac{a}{b}\right\rfloor b\right)y'=(a,b)$, \pau
+        \item 整理得$ay'+b\left(x'-\left\lfloor\dfrac{a}{b}\right\rfloor y'\right)=(a,b)$, \pau
+        \item 带回原方程可得$x=y',y=x'-\left\lfloor\dfrac{a}{b}\right\rfloor y'$,递归求解即可.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{扩展欧几里得算法 (exgcd)}
+    \begin{block}{问题}
+        给定整数$a,b$ ($a,b$不全为$0$),求不定方程$ax+by=(a,b)$的整数解.
+    \end{block}
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    int exgcd(int a, int b, int& x, int& y) {
+        if (!b) return x = 1, y = 0, a;
+        int r = exgcd(b, a % b, y, x);
+        y -= (a / b) * x;
+        return r;
+    }
+    \end{minted}
+    \pau\begin{itemize}
+        \item 时间复杂度: $\mathcal{O}(\log(\min\{a,b\}))$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{扩展欧几里得算法 (exgcd)}
+    \begin{block}{问题}
+        给定整数$a,b$ ($a,b$不全为$0$),求不定方程$ax+by=(a,b)$的整数解.
+    \end{block}
+    \begin{itemize}
+        \item 求出的为方程的特解$(x_0,y_0)$,通解为$$\left(x_0+k\dfrac{b}{(a,b)},y_0-k\dfrac{a}{(a,b)}\right).$$ \pau
+        \item $ax+by=d$当且仅当$(a,b)\mid d$.可转换为方程$ax'+by'=(a,b),k=\dfrac{d}{(a,b)},x'=\dfrac{x}{k},y'=\dfrac{y}{k}$计算.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{扩展欧几里得算法 (exgcd)}
+    \begin{exampleblock}{\href{http://poj.org/problem?id=1061}{青蛙的约会 (POJ 1061)}}
+        周长为$L$的圆,坐标为$[0,L-1]$.\\
+        两只青蛙在圆上,初始坐标为$x,y$,都向顺时针方向跳,每次跳动的距离为$m,n$,求他们第一次相遇时跳了多少次,或者不能相遇输出\texttt{Impossible}.\\
+        $x\neq y<2\times10^9,0<m,n<2\times10^9,0<L<2.1\times10^9$.
+    \end{exampleblock}
+\end{frame}
+
+\section{同余}
+\begin{frame}[fragile]
+    \frametitle{同余}
+    \begin{itemize}
+        \item $a,b$两个整数,对于一个正模数$m$,如果满足$a\,\%\,m=b\,\%\,m$,则称$a$与$b$对模$m$同余,记为$a\equiv b\pmod m$.
+    \end{itemize}\pau
+    \begin{block}{同余的性质}
+        \begin{itemize}\pau
+            \item $a\equiv a\pm m\pmod m$. \pau
+            \item $a\pm b\equiv(a\mod m)\pm(b\mod m)\pmod m$. \pau
+            \item $a\times b\equiv(a\mod m)\times(b\mod m)\pmod m$. \pau
+            \item $a$是$b$的倍数 $\Leftrightarrow a\equiv0\pmod b$.
+        \end{itemize}
+    \end{block}\pau
+    \begin{itemize}
+        \item 对于只含有$+,-,\times$的运算,可以在任何时刻对其中的数取模,其结果和原来的式子都是同余的. \pau
+        \item $a\div b\equiv(a\mod m)\div(b\mod m)\pmod m$ ?
+    \end{itemize}
+\end{frame}
+
+\section{快速幂}
+\begin{frame}[fragile]
+    \frametitle{快速幂}
+    \begin{block}{问题}
+        计算$a^b\mod m$, $0\leqslant b\leqslant10^{18}$.
+    \end{block} \pau
+    \begin{itemize}
+        \item 朴素算法: $\mathcal{O}(b)$,代价太高. \pau
+        \item 快速幂: 二进制取幂. \pau
+        \item 以$5^{27}$为例, $27=(11011)_2$, $5^{27}=5^1\times5^2\times5^8\times5^{16}$. 
+    \end{itemize}\pau
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    int ksm(int a, int b, int m) {
+        int ans = 1;
+        for (; b; a = 1ll * a * a % m, b >>= 1)
+            if (b & 1) ans = 1ll * ans * a % m;
+        return ans;
+    }
+    \end{minted}
+    \pau\begin{itemize}
+        \item 时间复杂度: $\mathcal{O}(\log n)$.
+    \end{itemize}
+\end{frame}
+
+\section{逆元}
+\begin{frame}[fragile]
+    \frametitle{逆元}
+    \begin{itemize}
+        \item $a\div b$在同余式中应当如何计算?
+    \end{itemize}\pau
+    \begin{block}{逆元}
+        如果$a,b\in\mathbb{Z}_m$,满足$ab\equiv1\pmod m$,则称$b$是$a$的逆元,记作$a^{-1}$.
+    \end{block}\pau
+    \begin{itemize}
+        \item 如何判定在$\mathbb{Z}_m$中, $a$是否有逆元?如果有,如何计算$a^{-1}$?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{逆元计算方法1}
+    \begin{itemize}
+        \item $ab=km+1$,扩展欧几里得算法(exgcd). \pau
+        \item 有逆元(不定方程有解)当且仅当$(a,m)=1$. \pau
+        \item 如果$m$为质数,则任意$0<a<m$, $a$均有逆元.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{逆元计算方法2}
+    \begin{block}{费马小定理}
+        设$p$为质数,如果$p\nmid a$,那么$a^{p-1}\equiv1\pmod p$.
+    \end{block} \pau
+    \begin{itemize}
+        \item 设$p$为质数, $a\in\mathbb{Z}_p$, $0<a<p$, 则有$a^{-1}\equiv a^{p-2}\pmod p$.\pau
+        \item 快速幂实现,时间复杂度$\mathcal{O}(\log n)$. \pau
+        \item 缺点:模数限制较大,只能为质数.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{欧拉函数}
+    \begin{block}{欧拉函数}
+        欧拉函数$\varphi(n)$为正整数$n$与序列$1,2,\cdots,n-1,n$中互质的数的个数.即$\varphi(n)=\sum\limits_{i=1}^n[(i,n)=1]$.
+    \end{block}\pau
+    \begin{itemize}
+        \item 设$n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k}$,则$$\varphi(n)=\prod\limits_{i=1}^k(p_i-1)p_i^{\alpha_i-1}.$$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{欧拉函数}
+    \begin{itemize}
+        \item 求单点的欧拉函数值$\varphi(n)$.在求质因子的基础上略加修改.
+    \end{itemize}\pau
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    int get_phi(int n) {
+        int phi = 1;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                phi *= (i - 1), n /= i;
+                while (n % i == 0) phi *= i, n /= i;
+            }
+        }
+        if (n > 1) phi *= (n - 1);
+        return phi;
+    }
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{欧拉函数}
+    \begin{itemize}
+        \item 求$\varphi(1),\varphi(2),\cdots,\varphi(n)$的值.在欧拉筛的基础上略加修改.
+    \end{itemize}\pau
+    \begin{minted}[fontsize=\footnotesize]{c++}
+    void init_phi(int n) {
+        phi[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            if (!not_prime[i]) prime[++tot] = i, phi[i] = i - 1;
+            for (int j = 1; j <= tot && i * prime[j] <= n; j++) {
+                not_prime[i * prime[j]] = 1;
+                if (i % prime[j] == 0) {
+                    phi[i * prime[j]] = phi[i] * prime[j];
+                    break;
+                }
+                phi[i * prime[j]] = phi[i] * (prime[j] - 1);
+            }
+        }
+    }
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{逆元计算方法3}
+    \begin{block}{欧拉定理}
+        如果$(a,m)=1$,那么$a^{\varphi(m)}\equiv1\pmod m$.
+    \end{block} \pau
+    \begin{itemize}
+        \item 设$m$为正整数, $a\in\mathbb{Z}_m$, $(a,m)=1$, 则有$a^{-1}\equiv a^{\varphi(m)-1}\pmod m$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{逆元计算方法4}
+    \begin{block}{问题}
+        计算$1$到$n$在模数为质数$p$意义下的逆元. $1\leqslant n\leqslant10^7$.
+    \end{block} \pau
+    \begin{itemize}
+        \item \quad$\left\lfloor\dfrac{p}{i}\right\rfloor i+p\,\%\,i=p$ \pau
+        \item $\Rightarrow \left\lfloor\dfrac{p}{i}\right\rfloor i+p\,\%\,i\equiv0\pmod p$ \pau
+        \item $\Rightarrow i^{-1}\equiv-\left\lfloor\dfrac{p}{i}\right\rfloor(p\,\%\,i)^{-1}\pmod p$.
+    \end{itemize}
+\end{frame}
+
+\section{CRT}
+\begin{frame}[fragile]
+    \frametitle{中国剩余定理 (CRT)}
+    \begin{exampleblock}{《孙子算经》}
+        今有物不知其数,三三数之剩二,五五数之剩三,七七数之剩二,问物几何?
+    \end{exampleblock} \pau
+    \begin{itemize}
+        \item 答案: $23$. \pau
+        \item $x\equiv 23\pmod{105}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{中国剩余定理 (CRT)}
+    \begin{block}{中国剩余定理}
+        方程组$\small\begin{cases}
+		x\equiv a_1\pmod{m_1}\\
+		x\equiv a_2\pmod{m_2}\\
+		\vdots\\
+		x\equiv a_k\pmod{m_k}\\
+		\end{cases}\left(\forall i\neq j,(m_i,m_j)=1\right)$
+		的解\pau 为$$x\equiv\sum\limits_{i=1}^kM_i'M_ia_i\pmod M$$其中$M=m_1m_2\cdots m_k$, $M_i=\dfrac{M}{m_i}$, $M_i'M_i\equiv1\pmod{m_i}$.
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{扩展中国剩余定理 (exCRT)}
+    \begin{block}{扩展中国剩余定理}
+        求方程组$\begin{cases}
+		x\equiv a_1\pmod{m_1}\\
+		x\equiv a_2\pmod{m_2}\\
+		\vdots\\
+		x\equiv a_k\pmod{m_k}\\
+		\end{cases}$的解.
+    \end{block}
+\end{frame}
+
+\section{组合数学}
+\begin{frame}[fragile]
+    \frametitle{加法原理和乘法原理}
+    \begin{itemize}
+        \item 加法原理:做某件事情有几种选择, 每种选择的方案数之和就是做这件事情的方案数. \pau
+        \item 乘法原理:做某件事情分为几步, 每步的方案数是独立的, 则它们的积就是做这件事情的方案数.
+    \end{itemize}\pau
+    \begin{exampleblock}{Question.3}
+        求满足$x+y\leqslant n$的正整数解的数量.
+    \end{exampleblock}\pau
+    \begin{exampleblock}{Question.4}
+        证明:因数个数公式: $d(n)=\prod\limits_{i=1}^k(\alpha_i+1)$.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{排列数}
+    \begin{block}{排列}
+        从$n$个不同元素中取出$m(m\leqslant n)$个元素,按照一定的顺序排成一列,叫做从$n$个元素中取出$m$个元素的一个排列.所有不同的排列的个数称为排列数,记作$P_n^m$或$A_n^m$.\\
+        特别地,当$m=n$时,这个排列被称作全排列.
+    \end{block}\pau
+    \begin{itemize}
+        \item 下降幂: $n^{\underline{r}}=n(n-1)(n-2)\cdots(n-r+1)$, $n^{\underline{0}}=1$.\pau
+        \item 上升幂: $n^{\overline{r}}=n(n+1)(n+2)\cdots(n+r-1)$, $n^{\overline{0}}=1$. \pau
+        \item 阶乘: $n!=n(n-1)\cdots1$, $0!=1$. \pau
+        \item 排列数: $A_n^m=\dfrac{n!}{(n-m)!}=n^{\underline{m}}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{组合数}
+    \begin{block}{组合}
+        从$n$个不同的元素中取出$m(m\leqslant n)$个元素为一组,叫做从$n$个元素中取出$m$个元素的一个组合.所有不同的组合的个数称为组合数,记作$C_n^m$或$\dbinom{n}{m}$.
+    \end{block}\pau
+    \begin{itemize}
+        \item 组合数: $\dbinom{n}{m}=\dfrac{n^{\underline{m}}}{m!}=\dfrac{n!}{\left(n-m\right)!m!}$. \pau
+        \item $\dbinom{n}{m}=\dbinom{n-1}{m-1}+\dbinom{n-1}{m}$. (递推求组合数). \pau
+	\item $\dbinom{n}{m}=\dfrac{n}{m}\dbinom{n-1}{m-1}$. \pau
+	\item $\dbinom{n}{m}=\dfrac{n-m+1}{m}\dbinom{n}{m-1}$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{组合数}
+    $$\dbinom{n}{m}=\dbinom{n-1}{m-1}+\dbinom{n-1}{m},\dbinom{n}{0}=1$$
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{c|ccccccccccc}
+			$n$\textbackslash$k$&$0$&$1$&$2$&$3$&$4$&$5$&$6$&$7$&$8$&$9$&$10$\\\hline
+			$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$1$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$2$&$1$&$2$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$3$&$1$&$3$&$3$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$4$&$1$&$4$&$6$&$4$&$1$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$5$&$1$&$5$&$10$&$10$&$5$&$1$&$0$&$0$&$0$&$0$&$0$\\
+			$6$&$1$&$6$&$15$&$20$&$15$&$6$&$1$&$0$&$0$&$0$&$0$\\
+			$7$&$1$&$7$&$21$&$35$&$35$&$21$&$7$&$1$&$0$&$0$&$0$\\
+			$8$&$1$&$8$&$28$&$56$&$70$&$56$&$28$&$8$&$1$&$0$&$0$\\
+			$9$&$1$&$9$&$36$&$84$&$126$&$126$&$84$&$36$&$9$&$1$&$0$\\
+			$10$&$1$&$10$&$45$&$120$&$210$&$252$&$210$&$120$&$45$&$10$&$1$\\
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{组合数}
+    \begin{exampleblock}{不定方程解的数量}
+        不定方程$x_1+x_2+\cdots+x_k=n$的解的数量,其中$x_i$为整数,且$x_i\geqslant1$.
+    \end{exampleblock}\pau
+    \begin{itemize}
+        \item $\dbinom{n-1}{k-1}$. \pau
+        \item $x_i\geqslant a_i$ ? \pau
+        \item $x_1+x_2+\cdots+x_k\leqslant n$ ? 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{组合数}
+    \begin{exampleblock}{网络路径计数问题}
+        在$n\times m$的网格图上,从$(0,0)$走到$(n,m)$,每次只能向右走或向上走,求方案数.
+    \end{exampleblock}\pau
+    \begin{itemize}
+        \item 组合数学, $\dbinom{n+m}{n}$. \pau
+        \item 动态规划, \texttt{dp[i][j] = dp[i-1][j] + dp[i][j-1]}, 可以处理有障碍物的情况.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{第二类斯特林数}
+    \begin{block}{第二类斯特林数}
+        第二类斯特林数表示将$n$个不同的小球,放入$k$个相同的盒子中,每个盒子至少放$1$个小球的不同的方案数,记作$S_2(n,k)$或$\begin{Bmatrix}n\\k\end{Bmatrix}$.
+    \end{block}\pau
+    \begin{itemize}
+        \item 插入$1$个小球时,有两种方案:\pau
+        \begin{enumerate}
+        	\item 将小球单独放入一个空盒子中,有$\begin{Bmatrix}n-1\\k-1\end{Bmatrix}$种方案;\pau
+        	\item 将小球放入一个现有的非空盒子中,有$k\begin{Bmatrix}n-1\\k\end{Bmatrix}$种方案.\pau
+        \end{enumerate}
+        \item 递推式:$\begin{Bmatrix}n\\k\end{Bmatrix}=\begin{Bmatrix}n-1\\k-1\end{Bmatrix}+k\begin{Bmatrix}n-1\\k\end{Bmatrix},\begin{Bmatrix}n\\0\end{Bmatrix}=[n=0]$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{第二类斯特林数}
+    $$\begin{Bmatrix}n\\k\end{Bmatrix}=\begin{Bmatrix}n-1\\k-1\end{Bmatrix}+k\begin{Bmatrix}n-1\\k\end{Bmatrix},\begin{Bmatrix}n\\0\end{Bmatrix}=[n=0]$$
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{c|ccccccccccc}
+			$n$\textbackslash$k$&$0$&$1$&$2$&$3$&$4$&$5$&$6$&$7$&$8$&$9$&$10$\\\hline
+			$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$1$&$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$2$&$0$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$3$&$0$&$1$&$3$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$4$&$0$&$1$&$7$&$6$&$1$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$5$&$0$&$1$&$15$&$25$&$10$&$1$&$0$&$0$&$0$&$0$&$0$\\
+			$6$&$0$&$1$&$31$&$90$&$65$&$15$&$1$&$0$&$0$&$0$&$0$\\
+			$7$&$0$&$1$&$63$&$301$&$350$&$140$&$21$&$1$&$0$&$0$&$0$\\
+			$8$&$0$&$1$&$127$&$966$&$1701$&$1050$&$266$&$28$&$1$&$0$&$0$\\
+			$9$&$0$&$1$&$255$&$3025$&$7770$&$6951$&$2646$&$462$&$36$&$1$&$0$\\
+			$10$&$0$&$1$&$511$&$9330$&$34105$&$42525$&$22827$&$5880$&$750$&$45$&$1$\\
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{$k$部分拆数}
+    \begin{block}{$k$部分拆数}
+        $k$部分拆数表示将$n$个相同的小球,放入$k$个相同的盒子中,每个盒子至少放$1$个小球的不同的方案数,记作$p(n,k)$.
+    \end{block}\pau
+    \begin{itemize}
+    	\item $k$部分拆数是下面方程的解的个数.$$n-k=x_1+x_2+\cdots+x_k,x_1\geq x_2\geq\cdots\geq x_k\geq0$$\pau
+    	\item 若其中有$i$个数非零,恰好有$p(n-k,i)$个解.\pau
+    	\item 可以得到 $p(n,k)=\sum\limits_{i=0}^kp(n-k,i)$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{$k$部分拆数}
+    \begin{block}{$k$部分拆数}
+        $k$部分拆数表示将$n$个相同的小球,放入$k$个相同的盒子中,每个盒子至少放$1$个小球的不同的方案数,记作$p(n,k)$.
+    \end{block}
+    \begin{itemize}
+    	\item $p(n,k)=\sum\limits_{i=0}^kp(n-k,i)$.\pau
+    	\item $p(n-1,k-1)=\sum\limits_{i=0}^{k-1}p(n-k,i)$.\pau
+    	\item 两式相减得递推式: $p(n,k)=p(n-1,k-1)+p(n-k,k),p(n,0)=[n=0]$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{$k$部分拆数}
+    $$p(n,k)=p(n-1,k-1)+p(n-k,k),p(n,0)=[n=0]$$
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{c|ccccccccccc}
+			$n$\textbackslash$k$&$0$&$1$&$2$&$3$&$4$&$5$&$6$&$7$&$8$&$9$&$10$\\\hline
+			$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$1$&$0$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$2$&$0$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$3$&$0$&$1$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$4$&$0$&$1$&$2$&$1$&$1$&$0$&$0$&$0$&$0$&$0$&$0$\\
+			$5$&$0$&$1$&$2$&$2$&$1$&$1$&$0$&$0$&$0$&$0$&$0$\\
+			$6$&$0$&$1$&$3$&$3$&$2$&$1$&$1$&$0$&$0$&$0$&$0$\\
+			$7$&$0$&$1$&$3$&$4$&$3$&$2$&$1$&$1$&$0$&$0$&$0$\\
+			$8$&$0$&$1$&$4$&$5$&$5$&$3$&$2$&$1$&$1$&$0$&$0$\\
+			$9$&$0$&$1$&$4$&$7$&$6$&$5$&$3$&$2$&$1$&$1$&$0$\\
+			$10$&$0$&$1$&$5$&$8$&$9$&$7$&$5$&$3$&$2$&$1$&$1$\\
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{球与盒子问题}
+    \begin{block}{球与盒子}
+        $n$个相同/不同的小球,放入$k$个相同/不同的盒子,每个盒子可以/不可以为空,求方案数.
+    \end{block}\pau
+    \begin{center}
+   		\begin{tabular}{cc|cc}\hline
+   			$n$个球&$k$个盒子&盒子可以为空&盒子不可以为空\\\hline
+   			有标号&有标号&$k^n$&$k!S_2\left(n,k\right)$\\
+   			有标号&无标号&$\sum\limits_{i=1}^kS_2\left(n,i\right)$&$S_2\left(n,k\right)$\\
+   			无标号&有标号&$\dbinom{n+k-1}{k-1}$&$\dbinom{n-1}{k-1}$\\
+   			无标号&无标号&$p\left(n+k,k\right)$&$p\left(n,k\right)$\\\hline			
+   		\end{tabular}
+   	\end{center}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Huge\calligra Thanks!}
+    \end{center}
+\end{frame}
+
+\end{document}

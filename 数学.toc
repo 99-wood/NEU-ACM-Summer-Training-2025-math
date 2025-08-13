@@ -3,5 +3,5 @@
 \beamer@sectionintoc {3}{质数}{35}{0}{3}
 \beamer@sectionintoc {4}{公因数与公倍数}{64}{0}{4}
 \beamer@sectionintoc {5}{模意义下运算及扩展欧几里得算法}{82}{0}{5}
-\beamer@sectionintoc {6}{中国剩余定理}{119}{0}{6}
-\beamer@sectionintoc {7}{组合数学}{125}{0}{7}
+\beamer@sectionintoc {6}{中国剩余定理}{117}{0}{6}
+\beamer@sectionintoc {7}{组合数学}{123}{0}{7}

@@ -53,14 +53,24 @@
 
 \newcounter{quizcounter}
 
+% \newenvironment{quizblock}{
+%     \refstepcounter{quizcounter}% 计数器加1
+%     \setbeamercolor{block title}{fg=white,bg=orange!85!black} % 标题背景
+%     \setbeamercolor{block body}{bg=orange!10!white,fg=black}   % 内容背景
+%     \begin{block}{Quiz \arabic{quizcounter}}
+% }{
+%     \end{block}
+% }
+
 \newenvironment{quizblock}{
-    \refstepcounter{quizcounter}% 计数器加1
+    \only<1>{\refstepcounter{quizcounter}}% 计数器加1（只在第一次出现时）
     \setbeamercolor{block title}{fg=white,bg=orange!85!black} % 标题背景
     \setbeamercolor{block body}{bg=orange!10!white,fg=black}   % 内容背景
     \begin{block}{Quiz \arabic{quizcounter}}
 }{
     \end{block}
 }
+
 
 % 字体设置（可按需替换）
 \setmainfont{Times New Roman}
@@ -637,6 +647,8 @@ int gcd(int x, int y) {
     \end{lstlisting}
   \end{codeblock}
 
+  复杂度为 $\mathcal{O}(\log \min(a, b))$.
+
 \end{frame}
 
 \begin{frame}[fragile]{欧几里得算法}
@@ -684,7 +696,7 @@ int lcm(int x, int y) {
   \vspace{1em}
 
   由于这两条好用的性质, 所以很多题目都会要求我们输出模意义的结果, 以此避免精度问题.
-  常用的模数有 $10^9 + 7$ 和 $998244353$. 这两个数都是质数.\pau
+  常用的模数有 $10^9 + 7$ 和 $998244353$. 这两个数都是质数.
 \end{frame}
 
 \begin{frame}{乘法逆元}
@@ -728,7 +740,7 @@ int lcm(int x, int y) {
   \begin{itemize}
     \item 费马小定理: 当 $p$ 是质数时, 有 $a^{p-1} \equiv 1 \pmod{p}$, 因此 $a^{p-2} \equiv a^{-1} \pmod{p}$.\pau
     \item 扩展欧几里得算法: 通过求解 $ax + py = 1$ 来得到 $b$.\pau
-    \item 线性递推求逆元: 通过递推关系 $b_i = -\lfloor \dfrac{p}{i} \rfloor (p \bmod i)^{-1} \bmod{p}$ 来计算.\pau
+    \item 线性递推求逆元: 通过递推关系 $b_i = -\lfloor \dfrac{p}{i} \rfloor (p \bmod i)^{-1} \bmod{p}$ 来计算.
   \end{itemize}
 \end{frame}
   
@@ -863,7 +875,7 @@ int exgcd(int a, int b, int& x, int& y) {
 }
     \end{lstlisting}
   \end{codeblock}
-    时间复杂度: $\mathcal{O}(\log(\min\{a,b\}))$.
+    时间复杂度: $\mathcal{O}(\log(\min(a,b)))$.
 \end{frame}
 
 \begin{frame}[fragile]{扩展欧几里得算法求逆元}
